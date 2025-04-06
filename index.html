@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Tag Viewer</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add styles for pagination later in style.css -->
+    <style>
+        .pagination-controls {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+        }
+        .pagination-controls button {
+            padding: 8px 16px;
+            margin: 0 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-weight: bold;
+        }
+        .pagination-controls button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        .pagination-controls button:disabled {
+            background-color: #333;
+            color: #777;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .pagination-controls span {
+            margin: 0 15px;
+            color: #ccc;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <h1>Media Tag Viewer</h1>
@@ -36,14 +73,23 @@
         <!-- Import/Export Buttons -->
         <button id="exportFavsBtn" style="margin-left: 15px;">Export Favorites</button>
         <button id="importFavsBtn" style="margin-left: 5px;">Import Favorites</button>
-        <input type="file" id="importFile" accept=".json" style="display: none;"> <!-- Hidden file input -->
+        <input type="file" id="importFile" accept=".json" style="display: none;">
         <!-- END Import/Export Buttons -->
     </div>
 
     <!-- Container for search results -->
     <div id="results" class="results-container">
-        <!-- Media items will be dynamically loaded here -->
+        <!-- Media items for the current page will be dynamically loaded here -->
     </div>
+
+    <!-- *** NEW: Pagination Controls *** -->
+    <div id="paginationContainer" class="pagination-controls" style="display: none;">
+        <button id="prevPageBtn" disabled>Previous Page</button>
+        <span id="pageInfo">Page 1</span>
+        <button id="nextPageBtn" disabled>Next Page</button>
+    </div>
+    <!-- *** END: Pagination Controls *** -->
+
 
     <!-- Container for favorites (Hidden by default) -->
     <div id="favoritesContainer" style="display: none;">
@@ -56,32 +102,21 @@
     <!-- Autoplay Slider Container (Initially Hidden) -->
     <div id="autoplaySliderContainer" style="display: none;">
         <span id="autoplayCloseBtn" class="close-btn">×</span>
-        <div id="autoplayVideoDisplay">
-            <!-- Single video player goes here -->
-        </div>
-        <!-- Autoplay Navigation Buttons -->
+        <div id="autoplayVideoDisplay"></div>
         <div class="autoplay-controls">
              <button id="autoplayPrevBtn" title="Previous (Left Arrow)">< Prev</button>
              <button id="autoplayNextBtn" title="Next (Right Arrow)">Next ></button>
         </div>
-        <!-- END Autoplay Navigation Buttons -->
     </div>
     <!-- END Autoplay Slider Container -->
 
-    <!-- Infinite Scroll Loader Element -->
-    <div id="infiniteScrollLoader">Loading more...</div>
-
-    <!-- Load More Button Container -->
-    <div id="loadMoreContainer" style="text-align: center; margin-top: 20px; display: none;">
-        <button id="loadMoreBtn">Load Random Page</button>
-    </div>
+    <!-- REMOVED Infinite Scroll Loader Element -->
+    <!-- REMOVED Load More Button Container -->
 
     <!-- Media Display Modal -->
     <div id="mediaModal" class="modal">
         <span class="close-media-btn close-btn">×</span>
-        <div class="modal-content media-modal-content">
-             <!-- Enlarged media element will be placed here by JS -->
-        </div>
+        <div class="modal-content media-modal-content"></div>
     </div>
 
     <script src="script.js"></script>
