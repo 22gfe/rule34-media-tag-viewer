@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Tag Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Media Tag Viewer</h1>
+    <div class="controls">
+        <label for="tags">Enter tags (space-separated):</label>
+        <input type="text" id="tags" name="tags" placeholder="e.g., cat dog">
+        <br>
+        <label for="videoOnly" style="margin-left: 15px;">
+            <input type="checkbox" id="videoOnly" name="videoOnly"> Videos Only
+        </label>
+        <label for="randomize" style="margin-left: 15px;">
+            <input type="checkbox" id="randomize" name="randomize"> Randomize Results
+        </label>
+
+        <!-- Autoplay Slider Switch (Initially Hidden) -->
+        <label for="autoplaySlider" class="slider-label" id="autoplaySliderLabel" style="display: none; margin-left: 15px;">
+             Autoplay Results:
+            <span class="slider-switch">
+                <input type="checkbox" id="autoplaySlider">
+                <span class="slider-round"></span>
+            </span>
+        </label>
+        <!-- END Autoplay Slider Switch -->
+
+        <br><br>
+        <button id="searchBtn">Search</button>
+        <button id="viewFavsBtn" style="margin-left: 15px;">View Favorites</button>
+
+        <!-- Import/Export Buttons -->
+        <button id="exportFavsBtn" style="margin-left: 15px;">Export Favorites</button>
+        <button id="importFavsBtn" style="margin-left: 5px;">Import Favorites</button>
+        <input type="file" id="importFile" accept=".json" style="display: none;"> <!-- Hidden file input -->
+        <!-- END Import/Export Buttons -->
+    </div>
+
+    <!-- Container for search results -->
+    <div id="results" class="results-container">
+        <!-- Media items will be dynamically loaded here -->
+    </div>
+
+    <!-- Container for favorites (Hidden by default) -->
+    <div id="favoritesContainer" style="display: none;">
+        <h2>Your Favorites</h2>
+        <div id="favoritesGrid">
+            <!-- Favorited items will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Autoplay Slider Container (Initially Hidden) -->
+    <div id="autoplaySliderContainer" style="display: none;">
+        <span id="autoplayCloseBtn" class="close-btn">×</span>
+        <div id="autoplayVideoDisplay">
+            <!-- Single video player goes here -->
+        </div>
+        <!-- Autoplay Navigation Buttons -->
+        <div class="autoplay-controls">
+             <button id="autoplayPrevBtn" title="Previous (Left Arrow)">< Prev</button>
+             <button id="autoplayNextBtn" title="Next (Right Arrow)">Next ></button>
+        </div>
+        <!-- END Autoplay Navigation Buttons -->
+    </div>
+    <!-- END Autoplay Slider Container -->
+
+    <!-- Infinite Scroll Loader Element -->
+    <div id="infiniteScrollLoader">Loading more...</div>
+
+    <!-- Load More Button Container -->
+    <div id="loadMoreContainer" style="text-align: center; margin-top: 20px; display: none;">
+        <button id="loadMoreBtn">Load Random Page</button>
+    </div>
+
+    <!-- Media Display Modal -->
+    <div id="mediaModal" class="modal">
+        <span class="close-media-btn close-btn">×</span>
+        <div class="modal-content media-modal-content">
+             <!-- Enlarged media element will be placed here by JS -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
